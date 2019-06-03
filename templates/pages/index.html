@@ -1,0 +1,400 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content_full%}
+     <div class="">
+        <div class="row post-slider-container">
+            <div class="col-md-8">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner pt-5">
+                        {% for headline in headlines %}
+                        {% if forloop.counter == 1 %}
+                        <div class="carousel-item active">
+                        {% else %}
+                        <div class="carousel-item">
+                        {% endif %}
+                            <div class="d-block">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="slide-image">
+                                            <a href="{% url 'post' %}{{ headline.slug }}" class="post-item-image">
+                                                <img src="../media/{{ headline.image_url }}" alt="">
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="post-item-content">
+                                            {% for category in headline.category.all %}
+                                                <span class="highlight mb-2">{{ category.name  }}</span>
+                                                {% endfor %}
+                                            <a href="{% url 'post' %}{{ headline.slug }}"><h6>{{ headline.title }}</h6></a>
+                                            <div class="meta">
+                                                <span>{{ headline.date_posted|timesince }} ago</span>
+                                            </div>
+                                            <p>{{ headline.expect|truncatewords:24 }}</p>
+                                            <a href="{% url 'post' %}{{ headline.slug }}" class="btn btn-primary mt-3">read more</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="header-events-container p-2">
+                    {% if changeMakers %}
+                    <h6 class="title title-dark">Change makers</h6>
+                    <div class="container change-maker mt-1"  id="change-makers">
+
+                            {% for changeMaker in changeMakers %}
+                        <div class="change-maker-item-container">
+                            <div class="row">
+                                   <div class="col-md-6 text-light change-maker-item">
+                                        <h6>{{ changeMaker.name }}</h6>
+                                        <small class="faded-text">{{ changeMaker.organisation }}</small>
+                                        <p>{{ changeMaker.expect|safe|truncatewords:10 }}</p>
+                                        <a href="{% url 'change-makers' %}{{ changeMaker.slug }}" class="btn btn-secondary mt-3">View profile</a>
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="change-maker-profile-image">
+                                            <img src="/media/{{ changeMaker.image_url }}" alt="">
+                                        </div>
+
+                                    </div>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        <h6 class="title title-dark">
+                            Opportunities
+                        </h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row top-banner d-flex align-items-center">
+            <div class="col-md-8 top-banner-site-info">
+                <div class="">
+                    <h5 class="text-light">“Be the change you want to see in the world” <br />- Gandhi</h5>
+                    <p class="text-muted">WeCanChangeOurWorld aims to be a change agent for brands serious about sustainable transformation in South Africa</p>
+                    <a href="{% url 'about-us' %}" class="btn btn-primary mt-3">About us</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="subscribe-newsletter">
+                    <h5 class="title">Subscribe to newsletter</h5>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <h6 class="bol-text pt-2 pb-2 text-light">{{ message }}</h6>
+                        {% endfor %}
+                    {% else %}
+                        <div id="mc_embed_signup pt-2">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="form-email">
+                                    {{ subscriberform.email|as_crispy_field }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Subscriber</button>
+                            </form>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="">
+<!--headline news-->
+    <div class="container mt-3 post-block">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="companies-headline-container mr-2">
+                    <h4 class="title">Headline News</h4>
+                    <div class="container headline-post-container mt-3 mb-3">
+                        <div class="row mr-1">
+                        {% for headline in headlines %}
+                            <div class="col-md-4">
+                                <div class="post-item post-item-{{ headline.id }}">
+                                    <div class="post-item-image mb-3">
+                                    <a href="{% url 'post' %}{{ headline.slug }}">
+                                        <img src="{{ headline.image_url.url }}" alt="">
+                                    </a>
+                                    </div>
+                                    <a href="{% url 'post' %}{{ headline.slug }}" title="{{ headline.slug }}"><h6 class="post-title">
+                                        {{ headline.title|capfirst }}
+                                    </h6></a>
+                                    {% if headline.company %}
+                                        <small class="text-muted">{{ headline.company }}</small>
+                                    {% elif headline.post_owner %}
+                                        <small class="text-muted">{{ headline.post_owner }}</small>
+                                    {% else %}
+                                        <small class="text-muted">{{ headline.author }}</small>
+                                    {% endif %}
+                                    <p>{{ headline.expect|stringformat:".100s" }}...</p>
+                                    <a href="{% url 'post' %}{{ headline.slug }}" class="text-primary mt-2">read more</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="headline-footer d-flex justify-content-end">
+                        <a href="/category/headlines" class="btn btn-primary">more articles</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!--headline news end-->
+
+    <div class="container bg-warning mt-3 mr-2">
+        <div class="row">
+            <div class="breaking-news">
+                <img src="{% static 'images/banner1.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+<!--    companies making a differences-->
+    <div class="container mt-3 post-block">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="companies-making-difference mr-2">
+                    <h4 class="title">Companies Making a Difference</h4>
+                    <div class="container companies-making-difference-posts mt-3 mb-3">
+                        <div class="row mr-1">
+                        {% for companynew in companynews %}
+                            <div class="col-md-4">
+                                <div class="post-item post-item-{{ headline.id }}">
+                                    <div class="post-item-image mb-3">
+                                        <img src="../media/{{ companynew.image_url }}" alt="">
+                                    </div>
+                                    <a href="{% url 'post' %}{{ companynew.slug }}" title="{{ companynew.slug }}"><h6 class="post-title">
+                                        {{ companynew.title|capfirst }}
+                                    </h6></a>
+                                    {% if companynew.post_owner %}
+                                        <small class="text-muted">{{ companynew.post_owner }}</small>
+                                    {% else %}
+                                        <small class="text-muted">{{ companynew.author }}</small>
+                                    {% endif %}
+                                    <p>{{ companynew.expect|stringformat:".100s" }}...</p>
+                                    <a href="{% url 'post' %}{{ companynew.slug }}" class="text-primary mt-2">read more</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="companies-making-difference-footer d-flex justify-content-end">
+                        <a href="" class="btn btn-primary">more articles</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!--companies making differences end-->
+
+    <div class="container mt-3 mr-2 news-banner">
+        <div class="row">
+            <div class="breaking-news">
+                <img src="{% static 'images/banner2.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+<!--news and events-->
+    <div class="container mt-3 post-block">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="news-and-events-container mr-2">
+                    <h4 class="title">News and Events</h4>
+                    <div class=" container news-and-events-posts mt-3 mb-3">
+                        <div class="row mr-1">
+                        {% for new in news %}
+                            <div class="col-md-4">
+                                <div class="post-item post-item-{{ new.id }}">
+                                    <div class="post-item-image mb-3">
+                                        <img src="../media/{{ new.image_url }}" alt="">
+                                    </div>
+                                    <a href="{% url 'post' %}{{ new.slug }}" title="{{ new.slug }}"><h6 class="post-title">
+                                        {{ new.title|capfirst }}
+                                    </h6></a>
+                                    {% if new.post_owner %}
+                                        <small class="text-muted">{{ new.post_owner }}</small>
+                                    {% else %}
+                                        <small class="text-muted">{{ new.author }}</small>
+                                    {% endif %}
+                                    <p>{{ new.expect|stringformat:".100s" }}...</p>
+                                    <a href="{% url 'post' %}{{ new.slug }}" class="text-primary mt-2">read more</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="news-and-events-footer d-flex justify-content-end">
+                        <a href="/post/" class="btn btn-primary">more articles</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!--news and events end-->
+
+    </div>
+{% endblock %}
+{% block sidebar %}
+
+    <div class="headlines mt-2">
+
+        <div class="latest-news ml-2">
+        <h6 class="title mb-2">Latest News</h6>
+        <ul>
+        {% for headside in headsides%}
+            <li class="headline-side-item">
+                <a href="{% url 'post' %}{{ headside.slug }}"><h6 class="bol-text">{{ headside.title }}</h6></a>
+                <p class="text-muted">{{ headside.expect|safe|truncatewords:12 }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+        </div>
+
+        <div class="opportunities ml-2">
+            <h6 class="title mt-3">Opportunities</h6>
+            <ul class="">
+                {% for opportunitie in opportunities %}
+                <li class="side-item">
+                    <a href=""><h6 class="bol-text"> &raquo; {{ opportunitie.name }}</h6></a>
+                    <p class="text-muted">{{ opportunitie.expect|safe|truncatewords:12 }}</p>
+                    <a href="" class="btn btn-primary mt-3">read more</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="main-events mt-3 ml-2">
+            <h6 class="title">Events</h6>
+            <ul>
+                {% for event in events %}
+                <li class="side-item">
+                    <a href=""><h6 class="bol-text">{{ event.name }}</h6></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="quotes mt-3 ml-2">
+        <h6 class="title">Quotes</h6>
+        <ul class="">
+            {% for quote in quotes %}
+                <li class="side-item">
+                    <p>
+                        {{ quote.quote_note }}
+                    </p>
+                    <blockquote><strong>{{ quote.author }}</strong></blockquote>
+                </li>
+            {% endfor %}
+        </ul>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block content_full_footer %}
+    <div class="container mt-3 mr-2 news-banner">
+        <div class="row">
+            <div class="breaking-news">
+                <img src="{% static 'images/sales.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <!--Videos-->
+    <div class="container mt-3 post-block">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="videos mr-2">
+                    <h4 class="title">Videos</h4>
+                    <div class="videos-post-container">
+                        <div class="container mt-3 mb-3">
+                            <div class="row">
+                                {% for video in videoposts %}
+                                <div class="col-md-12">
+                                    <div class="video-post-item">
+                                        <div class="video-container">
+                                            <iframe src="{{ video.video_url }}"
+                                                height="280" frameborder="0" allowfullscreen>
+                                            </iframe>
+                                         </div>
+                                        <div class="video-detail">
+                                            <h6 class="bol-text mt-2 mb-2">{{ video.title }}</h6>
+                                            <p>{{ video.description|truncatewords:25 }}</p>
+                                            <a href="{{ video.slug }}" class="btn btn-primary mt-3">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="ngo-npo-container">
+                    <h6 class="title mb-3">NGO's MAKING A DIFFERENCE</h6>
+                    <div class="container">
+                        <div class="row">
+                            {% for np in ngo_npo %}
+                                <div class="col-md-4">
+                                    <div class="ngo-npo-item--home mb-2 mr-2">
+                                        <div class="ngo-npo--home-image p-2">
+                                            <img src="{{ np.logo.url }}" alt="">
+                                        </div>
+
+                                        <a href="{{ np.get_absolute_url }}">
+                                            <h6 class="post-title p-2">{{ np.name }}</h6>
+                                        </a>
+                                        <p class="p-2">{{ np.expect|truncatewords:10 }}</p>
+                                    </div>
+                                   
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--videos end-->
+
+{% endblock %}

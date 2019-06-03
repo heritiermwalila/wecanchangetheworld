@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content_full %}
+<div class="page-header d-flex align-items-center change-maker-page">
+    <div class="pt-2 pb-2">
+        <h1>Change Maker</h1>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="pt-3">
+    <h5>WE CAN CHANGE OUR WORLD, TOGETHER</h5>
+    <p>Change-Maker. Yes, I’m talking to you! heard the talks in the corridors, and see the rave reviews. We want to acknowledge you, showcase your contribution in making the lives of the people around you, a whole lot easier</p>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        {% if changemakers %}
+        <h6 class="p-2">All Change Makers</h6>
+        {% for changeMaker in changemakers %}
+            <div class="col-md-12">
+                <div class="change-makers">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-4">
+                            <div class="change-makers-header">
+                                <div class="change-makers-image">
+                                    <img src="{{ changeMaker.image_url.url }}" alt="">
+                                </div>
+                                <a href="{% url 'change-makers' %}{{ changeMaker.slug }}">
+                                    <h5>{{ changeMaker.name }}</h5>
+                                </a>
+                                <small class="text-muted">{{ changeMaker.organisation }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="change-makers-body pt-3">
+                                <p>{{ changeMaker.expect|safe }}</p>
+                                <p class="mt-3"><a href="{% url 'change-makers' %}{{ changeMaker.slug }} " class="btn btn-primary">read more</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+            <h6 class="bol-text">No Change marker profile available</h6>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block sidebar %}
+    <div class="change-maker-sidebar mt-3">
+        <h6 class="title">Recents</h6>
+    </div>
+{% endblock %}

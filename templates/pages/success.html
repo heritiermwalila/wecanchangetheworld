@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content_full %}
+
+    <div class="row success-page">
+        <div class="col-md-12">
+            <h1 class="lowercase bol-text text-light">Thank you for contacting us</h1>
+            <p>Dear user, thank you for contacting us. Will be in touch with you as soon as possible</p>
+            <a href="/" class="btn btn-primary bg-dark mt-3">Events</a>
+            <a href="{% url 'opportunities' %}" class="btn btn-primary bg-dark mt-3">Opportunities</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="recents-events mt-4">
+            <h2 class="title">Recents Events</h2>
+        </div>
+    </div>
+
+{% endblock %}

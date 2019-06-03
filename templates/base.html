@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/slick.css'%}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+    {% if title %}
+        <title>{{title}} | WE CAN CHANGE</title>
+    {% else %}
+        <title>Welcome | WE CAN CHANGE</title>
+    {% endif %}
+    <script src="{% static 'js/all.min.js' %}"></script>
+</head>
+<body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=219938838514093&autoLogAppEvents=1"></script>
+    <div class="top-header">
+        <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-primary top-header">
+                            <div class="collapse navbar-collapse" id="navbarColor01">
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="tel:0824657983"><i class="fa fa-phone-square"></i> 082 - 465 7983</a>
+                                </li><li class="nav-item">
+                                    <a class="nav-link" href="mailto:sales@wecanchange.co.za"><i class="fa fa-envelope-square"></i> sales@wecanchange.co.za</a>
+                                </li>
+                                </ul>
+                            <div class="form-inline my-2 my-lg-0">
+                                <div class="d-flex justify-content-start align-items-center social-icons">
+                                   <a href=""><i class="fab fa-facebook-square fa-2x text-light"></i></a>
+                                   <a href=""><i class="fab fa-twitter-square fa-2x text-light"></i></a>
+                                   <a href=""><i class="fas fa-rss-square fa-2x text-light"></i></a>
+                                    <a href="/admin/" class="text-dark"><i class="fas fa-sign-in-alt fa-2x text-light"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-4 col-xs-12 d-flex align-items-center justify-content-between menu">
+                <a href="{% url 'home' %}"><img src="{%static 'images/logo.png' %}" alt="" height="100px"></a>
+                <div class="mobile-menu-handler">
+                    <img src="{% static 'images/menu.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div class="tagline-container">
+                    <div class="tagline">
+                        <img src="{% static 'images/TheHoliday.png'%}" alt="">
+                    </div>
+                    <div class="tagline">
+                        <img src="{% static 'images/valence.png'%}" alt="">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+    <div class="container" id="main-menu-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="menu-container">
+                    <ul class="menu-nav-container">
+                        <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item has-submenu">
+                            <a href="{% url 'post' %}">News</a>
+                            <ul class="sub-menu mega">
+                                <li class="sub-nav-item"><a href="{% url 'post' %}">All</a></li>
+                                {% if categories %}
+                                {% for category in categories %}
+                                    <li class="sub-nav-item"><a href="/category/{{ category.slug }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#">Profiles</a>
+                            <ul class="sub-menu simple">
+                                <li class="nav-item"><a href="{% url 'companies' %}">Companies</a></li>
+                                <li class="nav-item"><a href="{% url 'ngo-npo' %}">NGO & NPO</a></li>
+                                <li class="nav-item"><a href="{% url 'service-provider' %}">NGO Service Provider</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="{% url 'change-makers' %}">Change Makers</a></li>
+                        <li class="nav-item"><a href="{% url 'directory' %}">Directory</a></li>
+                        <li class="nav-item"><a href="{% url 'events' %}">Events</a></li>
+                        <li class="nav-item"><a href="{% url 'about-us' %}">About us</a></li>
+                        <li class="nav-item"><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                        <li class="nav-item"><a href="{% url 'opportunities' %}">Opportunities</a></li>
+                        <li class="nav-item"><a href="{% url 'contact-us' %}">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% block content_full%}
+        {% endblock %}
+    </div>
+    <div class="container">
+
+        <div class="row">
+
+                <div class="col-md-9">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            <div class="col-md-3">
+                {% block sidebar %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="row">
+            {% block content_full_footer %}
+            {% endblock %}
+        </div>
+
+
+    </div>
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark mt-3">
+    <div style="background-color: #ce0338;">
+      <div class="container">
+        <!-- Grid row-->
+        <div class="row py-4 d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0 text-light">
+            <h6 class="mb-0">Get connected with us on social networks!</h6>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+              <ul class="d-flex align-items-center ml-auto justify-content-end">
+                  <li class="mr-5">
+                      <a href="https://www.facebook.com/WeCanChangeOurWorld" target="_blank">
+                          <i class="fab fa-facebook-square fa-2x text-light"></i>
+                      </a>
+                  </li>
+                  <li class="mr-5">
+                      <a href="https://twitter.com/WeCanChangeSA#">
+                          <i class="fab fa-twitter-square fa-2x text-light"></i>
+                      </a>
+                  </li>
+                  <li class="mr-5"><a href=""><i class="fas fa-rss-square fa-2x text-light"></i></a></li>
+              </ul>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-3">
+                <div class="facebook ml-2">
+                    <div class="fb-page"
+                         data-href="https://www.facebook.com/WeCanChangeOurWorld"
+                         data-tabs="timeline"
+                         data-width="350"
+                         data-height="300"
+                         data-small-header="false"
+                         data-adapt-container-width="true"
+                         data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/WeCanChangeOurWorld" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/WeCanChangeOurWorld">WeCanChangeOurWorld</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="twitter ml-2">
+                    <a class="twitter-timeline" data-width="350" data-height="300" href="https://twitter.com/WeCanChangeSA?ref_src=twsrc%5Etfw">Tweets by WeCanChangeSA</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-us-footer ml-4">
+                    <h6 class="text-uppercase bol-text">We can change the world</h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>WeCanChangeOurWorld is an online media & news platform / portal (many to many), to showcase,
+                      connect and communicate all social and environmental development, with the view to facilitate and
+                      optimize COLLABORATION between the stakeholders: Government, Businesses, NGO's / NPO”s and Service
+                      Providers for the GREATER GOOD for everyone in South Africa & the World!</p>
+                    <a href="{% url 'about-us' %}" class="btn btn-primary mt-2">read more</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5 bg-primary pt-3 pb-3">
+
+      <!-- Grid row -->
+      <div class="row mt-3">
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Menu</h6>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <ul class="footer-link">
+              <li><a href="/admin/">Admin</a></li>
+              <li><a href="{% url 'about-us' %}">About Us</a></li>
+              <li><a href="{% url 'contact-us'%}">Contact Us</a></li>
+              <li><a href="">Terms and conditions</a></li>
+          </ul>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <ul class="footer-link">
+              <li><a href="{% url 'events' %}">Events</a></li>
+              <li><a href="{% url 'opportunities' %}">Opportunities</a></li>
+              <li><a href="{% url 'change-makers' %}">Change Makers</a></li>
+              <li><a href="{% url 'service-provider' %}">Service Provider</a></li>
+          </ul>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+
+          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+
+          <p>
+            <i class="fas fa-home mr-3"></i> CAPE TOWN / WESTERN CAPE</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> cheryl@wecanchange.co.za</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> +27 82 465 7983</p>
+
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 footer-credit">© 2019 Copyright:
+      <a href="https://www.quirky30.co.za/" target="_blank"> Quirky innovation</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/propper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/fontawesome.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

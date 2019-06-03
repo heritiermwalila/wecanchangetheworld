@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content_full %}
+<div class="page-header d-flex align-items-center events-page">
+    <div class="pt-2 pb-2">
+        <h1>Events</h1>
+    </div>
+
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% for event in events %}
+
+    <div class="row mt-2 event-item">
+        <div class="col-md-4">
+            <div class="event-detail">
+                <h6>Organisation</h6>
+                <p>{{event.organisation_name}}</p>
+                <small class="text-muted">{{ event.organisation_email }}</small>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="event-description">
+                <h5>{{ event.name }}</h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="time text-muted">
+                                <span>Date</span>
+                                <p>Start: {{event.start_date}}</p>
+                                <p>End: {{event.end_date}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="time text-muted">
+                                <span>Time</span>
+                                <p>Start: {{event.start_time}}</p>
+                                <p>End: {{event.end_time}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ event.slug }}" class="btn btn-primary mt-3">Event detail</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

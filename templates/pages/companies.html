@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content_full %}
+    <div class="page-header d-flex align-items-center companies-page">
+        <div class="pt-2 pb-2">
+            <h1>Companies</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        {% for company in companies %}
+        <div class="row post-content p-3 d-flex align-items-center">
+            <div class="col-4">
+                <div class="profile-item-image">
+                    <img src="/media/{{ company.logo }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="company-content">
+                    <h6 class="post-title">{{ company.name }}</h6>
+                    <p>{{ company.expect }}</p>
+                    <a href="{% url 'companies' %}{{ company.slug }}" class="btn btn-primary mt-2">read more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar ml-2 mt-3">
+        <h6 class="title">Recent companies</h6>
+        <ul>
+            {% for company in companies|slice:"10:20" %}
+                <li>{{ company.name}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

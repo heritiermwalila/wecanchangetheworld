@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content_full %}
+<div class="page-header d-flex align-items-center subscriber-page">
+    <div class="pt-2 pb-2">
+        <h1>Subscribe</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="suberscriber pt-2 mr-2">
+        <h4 class="bol-text">NEWSLETTER SUBSCRIPTION</h4>
+        <p class="pt-2">We Can Change Our World provides information to stakeholders in the Social Responsibility and Sustainablility sector.
+            Subscribed emails will receive our monthly newsletter providing news, activities and event information.</p>
+
+        {% if messages %}
+            <ul class="mt-3">
+                {% for message in messages %}
+                <li><h6 class="bol-text">{{ message }}</h6></li>
+                <li>&raquo; New posts</li>
+                <li>&raquo; Events</li>
+                <li>&raquo; Job opportunities</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <form action="" method="POST" class="mt-3">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary">Subscriber</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar ml-2 mt-2">
+        <h6 class="title">Social Media</h6>
+    </div>
+{% endblock %}

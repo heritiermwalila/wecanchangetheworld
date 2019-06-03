@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content_full %}
+    <div class="page-header d-flex align-items-center" style="background-image:url(/media/{{ company.background_image }})">
+        <div class="pt-2 pb-2">
+            <div class="profile-image">
+                <img src="/media/{{ company.logo }}" alt="">
+            </div>
+            <h1 class="ml-3">{{ company.name }}</h1>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs profile-tab" id="myTab" role="tablist">
+
+        {% for tab in pages %}
+            <li class="nav-item">
+                <a class="nav-link {% if forloop.counter == 1 %} active {% endif %}" id="{{ tab.slug }}-tab" data-toggle="tab" href="#{{ tab.slug }}" role="tab" aria-controls="about" aria-selected="true">{{ tab.name }}</a>
+            </li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}
+{% block content %}
+    <div class="tab-content" id="myTabContent">
+        {% for tabcontent in pages %}
+        <div class="tab-pane fade show {% if forloop.counter == 1 %} active {% endif %} pt-3"
+             id="{{ tabcontent.slug }}"
+             role="tabpanel"
+             aria-labelledby="{{ tabcontent.slug }}-tab">
+            {% if tabcontent.slug == 'news-and-events' %}
+                {% if posts %}
+                <h6 class="highlight highlight-dark mb-2">{{ tabcontent.name }}</h6>
+                    <div class="container">
+                    {% for post in posts %}
+                        <div class="row post-content p-3">
+                            <div class="col-md-4">
+                                <div class="post-item-image p-2">
+                                    <img src="/media/{{ post.image_url }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="post-body">
+                                    <a href="{% url 'post' %}{{ post.slug }}"><h6 class="bol-text">{{ post.title }}</h6></a>
+                                    <p>{{ post.expect|truncatewords:30 }}</p>
+                                    <a href="{% url 'post' %}{{ post.slug }}" class="btn btn-primary mt-3">read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <h6 class="bol-text">No post available</h6>
+                {% endif %}
+            {% else %}
+            <h6 class="highlight highlight-dark mb-2">{{ tabcontent.name }}</h6>
+            <div class="mt-3 mr-3 border-top border-right pt-3 pr-3">
+                {{ tabcontent.content|safe }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
+{% block sidebar %}
+    <div class="sidebar ml-2">
+        <h6 class="title">Info</h6>
+        <div class="card mt-3">
+            <div class="card-body">
+                <ul class="profile-contact">
+                    {% if company.email %}
+                    <li><i class="fas fa-envelope fa-2x text-primary"></i> <b>{{ company.email }}</b></li>
+                    {% endif %}
+                    {% if company.phone %}
+                    <li><i class="fas fa-mobile fa-2x text-primary"></i> <b>{{ company.phone }}</b></li>
+                    {% endif %}
+
+                    {% if company.website_url %}
+                    <li>
+                        <a href="{{ company.website_url }}" target="_blank">
+                            <i class="fas fa-globe"></i> <b>Website</b>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if service_provider.ceo %}
+                        <li><i class="fas fa-user fa-2x text-primary"></i> <b>{{ company.ceo }}</b></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

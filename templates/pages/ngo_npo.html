@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content_full %}
+    <div class="page-header d-flex align-items-center ngo-and-npo-page">
+        <div class="pt-2 pb-2">
+            <h1>NGO and NPO</h1>
+
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="ngo-npo-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="pt-4 pb-4 post-title">Search NGO / NPO by Name Search for an NGO/NPO by name to view their profile ...</h5>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+           {% if ngonpos %}
+                {% for ngonpo in ngonpos %}
+
+                        <div class="row ngo-npo-item d-flex align-items-center p-3">
+                            <div class="col-md-4">
+                                <div class="profile-item-image">
+                                    <img src="/media/{{ ngonpo.logo }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="ngo-npo-item--body">
+                                    <a href="{% url 'ngo-npo' %}{{ ngonpo.slug }}">
+                                        <h6 class="post-title">{{ ngonpo.name }}</h6>
+                                    </a>
+                                    <p>{{ ngonpo.expect|truncatewords:30 }}</p>
+                                    <a href="{% url 'ngo-npo' %}{{ ngonpo.slug }}" class="btn btn-primary mt-3">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                {% endfor %}
+           {% else %}
+            <div class="row">
+                <div class="col-md-12">
+                     <h5>No profile available</h5>
+                </div>
+            </div>
+
+           {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}

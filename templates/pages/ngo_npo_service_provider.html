@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block content_full %}
+ <div class="page-header d-flex align-items-center ngo_npo_service_provider-page">
+        <div class="pt-2 pb-2">
+            <h1>NGO & NPO Service Provider</h1>
+        </div>
+ </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        {% for service in services %}
+        <div class="row post-content p-3 d-flex align-items-center">
+            <div class="col-3">
+                <div class="profile-item-image">
+                    <img src="/media/{{ service.logo }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="company-content">
+                    <h6 class="post-title">{{ service.name }}</h6>
+                    <p>{{ service.expect }}</p>
+                    <a href="{% url 'service-provider' %}{{ service.slug }}" class="btn btn-primary mt-2">read more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar ml-2 mt-3">
+        <h6 class="title">Recent companies</h6>
+        <ul>
+            {% for service in services|slice:"10:20" %}
+                <li>{{ service.name}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="change-maker-profile">
+                    <img src="{{ changemaker.image_url }}" alt="">
+                    <h1>{{ changemaker.name }}</h1>
+                    <small>{{ changemaker.organisation }}</small>
+                    <h6 class="text-uppercase pt-3">Contact details</h6>
+                    <p><i class="fas fa-envelope"></i> {{ changemaker.email }}</p>
+                    <span><i class="fas fa-mobile"></i> {{ changemaker.phone }}</span>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            Description
+                        </div>
+                        <div class="card-body">
+                            <p>{{ changemaker.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

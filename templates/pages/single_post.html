@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container page-header-single">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="single-post-container">
+                    <small>
+                        {% for category in post.category.all %}
+                        <span class="highlight">{{ category.name }},</span>
+                        {% endfor %}
+                        <span class="icon-tag"><i class="fas fa-calendar-alt"></i></span> {{ post.date_posted }}
+                    </small>
+                    <h1 class="bol-text">{{ post.title }}</h1>
+                        {% if post.company %}
+                            <p class="bol-text text-muted">
+                                Author: <a href="{% url 'companies' %}{{ post.company.slug }}">{{ post.company }}</a>
+                            </p>
+                        {% elif post.ngo_or_npo %}
+                            <p class="bol-text text-muted">
+                                Author: <a href="{% url 'ngo-npo' %}{{ post.ngo_or_npo.slug }}">{{ post.ngo_or_npo }}</a>
+                            </p>
+                        {% elif post.service_provider %}
+                            <p class="bol-text text-muted">
+                                Author: <a href="{% url 'service-provider' %}{{ post.service_provider.slug }}">{{ post.service_provider }}</a>
+                            </p>
+                        {% else %}
+                            Author: <span class="">{{ post.author }}</span>
+                        {% endif %}
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="feature-image-container mt-3">
+                                <img src="../media/{{ post.image_url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="except-text mt-3">
+                                <p>{{ post.expect|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <p class="pt-3">{{ post.content|safe }}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{%endblock%}
