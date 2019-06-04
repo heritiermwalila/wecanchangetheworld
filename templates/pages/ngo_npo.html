@@ -19,13 +19,13 @@
            {% if ngonpos %}
                 {% for ngonpo in ngonpos %}
 
-                        <div class="row ngo-npo-item d-flex align-items-center p-3">
-                            <div class="col-md-4">
-                                <div class="profile-item-image">
+                        <div class="row ngo-npo-item d-flex align-items-center mb-2">
+                            <div class="col-md-4 p-2">
+                                <div class="profile-item-image pr-4">
                                     <img src="/media/{{ ngonpo.logo }}" alt="">
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 border-left pl-2">
                                 <div class="ngo-npo-item--body">
                                     <a href="{% url 'ngo-npo' %}{{ ngonpo.slug }}">
                                         <h6 class="post-title">{{ ngonpo.name }}</h6>

@@ -1,0 +1,14 @@
+<div class="events">
+    <ul>
+        {% for event in events %}
+            &mdash;<li>
+                <a href="{{ event.get_absolute_url }}"><h6 class="bol-text">{{ event.name }}</h6></a>
+                <div class="event-details">
+                    <p class="text-muted">Event start: {{ event.start_date }}</p>
+                    <p class="text-muted">Event end: {{ event.end_date }}</p>
+                    <p class="text-muted">Organisation: {{ event.organisation }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

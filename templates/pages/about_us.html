@@ -6,142 +6,113 @@
         <h1>About us</h1>
     </div>
 </div>
+{% endblock %}
+{% block content %}
+    <div class="about-us mt-3">
+        <h2 class="bol-text">WeCanChangeOurWorld</h2>
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-3">
+                     <div class="founder-image mt-3">
+                        <img src="{% static 'images/profile-about-us.jpg' %}" alt="">
+                        <p class="text-muted bol-text">Cheryl Harper</p>
+                         <strong>Founder</strong>
+                     </div>
+                </div>
+                <div class="col-md-9">
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-3">
-
-            <img src="{% static 'images/profile-about-us.jpg' %}" alt="" width="200px">
-
+                </div>
+            </div>
         </div>
-        <div class="col-md-9">
-            <h2>Founder</h2>
-            <p>WeCanChangeOurWorld is an online media & news platform / portal (many to many),
-                to showcase, connect and communicate all social and environmental development,
-                with the view to facilitate and optimize COLLABORATION between the stakeholders:
-                Government, Businesses, NGO’s / NPO”s and Service Providers for the GREATER GOOD
+        <div class="content mt-5 pr-3 pb-3 border-bottom">
+            <p>WeCanChangeOurWorld is an online media & news platform / portal (many to many), to showcase, connect and communicate all social and environmental development, with the view to facilitate and optimize COLLABORATION between the stakeholders:
+                Government, Businesses, NGO's / NPO”s and Service Providers for the GREATER GOOD
                 for everyone in South Africa & the World!</p>
+
         </div>
-    </div>
-</div>
-<div class="container mt-5">
-    <div class="row bg-primary pt-3 pb-3">
-        <div class="col text-light">
-            <h5>We can be your marketing and public relations partner by:</h5>
-            <p>Marketing and promoting your NPO on our portal, newsletter,
-                social media and in all our networking opportunities. We are the GOOD NEWS site—for
-                all the good things that are happening, also appeals fundraising, events, workshops,
-                conferences, jobs and opportunities.</p>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="content-text">
-        <h5>Are YOU a Change Maker?</h5>
-        <ul>
-            <li>showcase yourself and your good work on our portal.
-Showcase your organization on our platform with a Profile (mini website), with about us, programmes,
-            services, support, news and contact details for exposure to all the traffic coming to our site.</li>
-            <li>Send regular news, events, success stories, events and activities for our news sections and newsletter.
-            The more proactive you are, the more you will be seen by potential funders.</li>
-            <li>Educating NGO”s through news about workshops and various service providers Selection of
-                companies/s, / corporate funders, to target Ackerman Foundation – She opened doors for funding
-                Foschini Group – She arranged funding and partnership agreements Community Chest – Initiated partnership
-                and project support Old Mutual – Initiated opportunities for funding and special projects</li>
+        <h6 class="bol-text mt-2">We can be your marketing and public relations partner by:</h6>
+        <ul class="list-item mt-3">
+            <li>Marketing and promoting your NPO on our portal, newsletter,
+                social media and in all our networking opportunities. We are the GOOD NEWS site—for all
+                the good things that are happening, also appeals fundraising, events, workshops, conferences,
+                jobs and opportunities.</li>
+            <li>
+                Are YOU a Change Maker?—showcase yourself and your good work on our portal.
+            </li>
+            <li>
+                Showcase your organization on our platform with a Profile (mini website), with about us, programmes, services, support, news and contact details for exposure
+                to all the traffic coming to our site.
+            </li>
+            <li>
+                Send regular news, events, success stories, events and activities for our news sections and newsletter. The more proactive you are,
+                the more you will be seen by potential funders.
+            </li>
+            <li>
+                Identifying the stakeholders to get involved: Government, Corporates, Communities, Organizations
+            </li>
+            <li>Educating NGO”s through news about workshops and various service providers</li>
+            <li>Selection of companies/s, / corporate funders, to target</li>
         </ul>
-        </div>
 
-
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-8">
-            <div class="card text-light">
-              <div class="card-body bg-dark">
-                <h5 class="card-title">For more about We Can Change Our World</h5>
-                <p class="card-text">We welcome contact with all stakeholder groups with an interest in
-“We Can Change Our World”.</p>
-                <a href="{% url 'contact-us' %}" class="btn btn-primary">Contact Cheryl Harper</a>
-              </div>
-            </div>
-            <h4 class="pt-3">“Be the change you want to see in the world” – Gandhi</h4>
-            <div class="accordion mt-4" id="accordionExample">
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      CHANGE OUR WORLD
-                    </button>
-                  </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body">
-                      WeCanChangeOurWorld aims to be a change agent for brands serious about sustainable transformation
-                      in South Africa – The portal is a platform for all companies and organisations involved in
-                      sustainable brand programmes and initiatives to connect with influencers and non-governmental/governmental
-                      organisations involved in sustainable social transformation in South Africa.
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      WE CAN CHANGE
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body">
-                      WeCanChangeOurWorld is an information destination for all news, expert commentary, regulatory data, case studies and
-                      general records for those committed to investing in true sustainable initiatives – This highly
-                      dynamic industry sector has many passionate activists involved in worthy causes; NGOs driving
-                      social projects and companies as well as organisations needing to implement CHANGE programmes
-                      benefiting from meaningful changes within their organisational structures. In order to drive
-                      real, meaningful social change, it is critical to put brands in touch with measurable social
-                      entrepreneurship , something WeCanChangeOurWorld is committed to doing. Our expert Editorial
-                      Board will guide editorial policy to ensure we deliver credible, independent information and insight.                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      CONNECT TO OUR WORLD
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-WeCanChangeOurWorld enables companies, organisations, NGOs and all services involved in the sustainable social transformation space to promote their initiatives, projects and programmes; highlight successful case studies and disseminate their news to the broader community of people passionate about and interested in social change.
-
-This independent news and information web portal for social development will aim to enable brands to collaborate with the NGO sector ; debunk the myths of a non-cooperative sector which operates in silos ; provide information on the latest regulatory requirements and the triple bottom line ; as well as measurement models with correct ROI (return on investment) as opposed to once-off charitable investment. An expert Advisory Board will guide our Management Team to ensure we remain independent and credible agents for social change in South Africa and Africa and for this patform to remain neutral and report on developments for all agendas.                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card ml-2">
-                <div class="card-body">
-                    SETA – Introduced YISS to key players with regards to accreditation opportunities
-                    Shoprite – Acquired donations for our Elderly and youth graduation events
-                    Cheryl’s website has benefitted YISS in many ways and continues to do so through the generous exposure that YISS is enjoying through her website.”
-                </div>
-
-            </div>
-            <div class="card ml-2 mt-2">
-                    <div class="card-body">
-                        <strong>Zanele Njapha, Sustainability Manager, Brandhouse wrote:</strong>
-                        <p class="text-muted">“Greetings Sihle, We applaud you on the wonderful work that you do in the community. We received your plea for laptop donations, from Cheryl Harper at WeCanChangeOurWorld. We have 25 laptops (2nd hand) which we would like to donate your organization.”</p>
+        <div class="donors-funders mt-5">
+            <h6 class="bol-text">Funders and Donors</h6>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>&raquo; Ackerman Foundation</h6>
+                        <p class="pl-2">She opened doors for funding</p>
                     </div>
-            </div>
-            <div class="card ml-2 mt-2">
-                <div class="card-body">
-                    <strong>Jesmina Stemmet from YISS wrote:</strong>
-                    <p>“Ms Cheryl Harper is also a valued and trusted member of the YISS board of directors. Below are a few examples of her influence, input and value to YISS.”</p>
+                    <div class="col-md-4">
+                        <h6>&raquo; Foschini Group </h6>
+                        <p class="pl-2">She arranged funding and partnership agreements</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>&raquo; Community Chest </h6>
+                        <p class="pl-2">Initiated partnership and project support</p>
+                    </div>
+
                 </div>
+                <div class="row mt-3">
+                     <div class="col-md-4">
+                        <h6>&raquo; Old Mutual </h6>
+                        <p class="pl-2">Initiated opportunities for funding and special projects</p>
+                    </div>
+                     <div class="col-md-4">
+                        <h6>&raquo; SETA </h6>
+                        <p class="pl-2">Introduced YISS to key players with regards to accreditation opportunities</p>
+                    </div>
+                     <div class="col-md-4">
+                        <h6>&raquo; Shoprite </h6>
+                        <p class="pl-2">Acquired donations for our Elderly and youth graduation events</p>
+                    </div>
+                </div>
+
+                <blockquote class="mt-3">
+                    Cheryl’s website has benefitted YISS in many ways and continues to do so through
+                    the generous exposure that YISS is enjoying through her website."
+                </blockquote>
             </div>
         </div>
+
     </div>
 
-</div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar mt-3 ml-2">
+        <h6 class="title">Donations</h6>
+        <div class="who-wrote mt-3">
+            &mdash;
+            <h6 class="bol-text">Zanele Njapha</h6>
+        <strong>Sustainability Manager, Brandhouse</strong>
+        <p class="text-muted">“Greetings Sihle, We applaud you on the wonderful work that you do in the community.
+            We received your plea for laptop donations, from Cheryl Harper at WeCanChangeOurWorld.
+            We have 25 laptops (2nd hand) which we would like to donate your organization.”</p>
+            &mdash;
+            <h6 class="bol-text">Jesmina Stemmet</h6>
+            <strong>YISS</strong>
+            <p class="text-muted">"Ms Cheryl Harper is also a valued and trusted member of the YISS board of directors.
+                Below are a few examples of her influence, input and value to YISS."</p>
+        </div>
+    </div>
 {% endblock %}

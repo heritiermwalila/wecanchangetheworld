@@ -13,10 +13,8 @@
             {% for post in posts %}
                 <div class="post-item-container mt-2">
                     <div class="card">
-                        <div class="card-header">
-                            <a href="{{ post.get_absolute_url }}"><h6 class="post-title">{{ post.title }}</h6></a>
-                        </div>
                         <div class="card-body">
+                            <div class="container">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="p-2">
@@ -24,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-
+                                    <a href="{{ post.get_absolute_url }}"><h6 class="post-title">{{ post.title }}</h6></a>
                                     <p class="text-muted pt-2 pb-2">
                                         {% if post.company %}
                                             <a href="{% url 'companies' %}{{ post.company.slug }}"><span class="highlight">{{ post.company }}</span></a>
@@ -35,11 +33,12 @@
                                         {% endif %}
                                         <span class="icon-tag"><i class="fas fa-calendar-alt"></i></span> {{ post.date_posted }}
                                     </p>
-                                    <p class="text-muted">
+                                    <p class="text-muted pr-3">
                                         {{ post.expect }}...
                                     </p>
                                     <a href="{{ post.slug }}" class="btn btn-primary mt-2">read more</a>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -68,5 +67,5 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% include 'sidebar.html' %}
+    {% include 'includes/sidebar.html' %}
 {% endblock %}

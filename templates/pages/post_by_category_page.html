@@ -19,21 +19,23 @@
                 {% for post in posts %}
                 <div class="post-list--item mt-2">
                     <div class="card">
-                        <div class="card-header">
-
-                        </div>
                         <div class="card-body">
+                            <div class="container">
                             <div class="row d-flex align-items-center">
-                                <div class="col-md-4">
-                                    <div class="post-item-image p-2">
+                                <div class="col-md-5">
+                                    <div class="post-item-image pr-4">
                                         <img src="../media/{{ post.image_url }}" alt="">
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <a href="{{ post.get_absolute_url }}"><h6 class="bol-text">{{ post.title }}</h6></a>
-                                    <p class="pt-2 pb-3 text-primary">
+                                    <p class="pt-2 pb-2 text-primary">
                                         {% if post.company %}
                                             <a href="{% url 'companies' %}{{ post.company.slug }}"><span class="highlight">{{ post.company }}</span></a>
+                                        {% elif post.service_provider %}
+                                            <a href="{% url 'companies' %}{{ post.service_provider.slug }}">
+                                                <span class="highlight">{{ post.service_provider }}</span>
+                                            </a>
                                         {% elif post.ngo_or_npo %}
                                         <a href="{% url 'ngo-npo' %}{{ post.ngo_or_npo.slug }}"><span class="highlight">{{ post.ngo_or_npo }}</span></a>
                                         {% else %}
@@ -41,9 +43,11 @@
                                         {% endif %}
                                         <span class="icon-tag"><i class="fas fa-calendar-alt"></i></span> {{ post.date_posted }}
                                     </p>
-                                    <p class="text-muted">{{ post.expect|truncatewords:30 }}</p>
+                                    <p class="text-muted pr-2">{{ post.expect|truncatewords:30 }}</p>
                                     <a href="{{ post.get_absolute_url }}" class="btn btn-primary mt-2">read more</a>
                                 </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
@@ -61,5 +65,5 @@
     </div>
 {% endblock %}
 {% block sidebar %}
-    {% include 'sidebar.html' %}
+    {% include 'includes/sidebar.html' %}
 {% endblock %}

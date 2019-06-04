@@ -2,3 +2,5 @@
 wecanchange/settings/local.py
 .DS_Store
 .idea/
+
+*.pyc

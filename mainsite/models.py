@@ -93,6 +93,8 @@ class Event(models.Model):
     organisation_name = models.CharField(max_length=100, blank=True)
     organisation_email = models.EmailField()
     organisation_phone = models.CharField(max_length=15, blank=True)
+    event_main_guest = models.FileField(upload_to='events/', default='static/images/noprofile.png')
+    event_main_guest_name = models.CharField(max_length=100, blank=True)
     event_address = models.CharField(max_length=255, blank=True)
     venue_name = models.CharField(max_length=50, blank=True)
     expect = models.TextField(max_length=368)
@@ -122,6 +124,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('event-single', kwargs={'slug': self.slug})
 
 
 

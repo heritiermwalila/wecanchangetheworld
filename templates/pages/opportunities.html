@@ -11,21 +11,22 @@
 {% endblock %}
 {% block content %}
 <div class="opportunities">
+    <div class="container">
     {% for opportunity in opportunities%}
-    <div class="row mt-4">
+    <div class="row mt-3  opportunity-item p-3">
         <div class="col-md-4">
             <div class="opportunity-image">
                 <img src="/media/{{ opportunity.company_logo }}" alt="">
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 pl-2 border-left">
             <div class="opportunity">
                 <div class="opportunity-header">
                     <a href="{% url 'opportunities' %}{{ opportunity.slug }}"><h6>{{ opportunity.name }}</h6></a>
                     <small class="text-muted">Posted: {{ opportunity.date_posted }}</small>
                 </div>
                 <div class="opportunity-body">
-                    <p>{{ opportunity.description|safe }}</p>
+                    <p>{{ opportunity.description|safe|truncatewords:25 }}</p>
                     <a href="{% url 'opportunities'%}{{ opportunity.slug }}" class="btn btn-primary mt-3">read more</a>
                 </div>
 
@@ -33,5 +34,13 @@
         </div>
     </div>
     {% endfor %}
+        </div>
 </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar ml-2 mt-3">
+        <h6 class="title">Events</h6>
+        {% include 'includes/events.html' %}
+    </div>
 {% endblock %}

@@ -9,7 +9,7 @@ urlpatterns = [
     path('change-makers/<slug>', views.change_maker_single),
     path('directory/', views.directory, name="directory"),
     path('events/', views.events, name="events"),
-    path('events/<slug>', views.event_single),
+    path('events/<slug>', views.event_single, name="event-single"),
     path('about-us/', views.about_us, name="about-us"),
     path('contact-us/', views.contact_us, name="contact-us"),
     path('subscribe/', views.subscribe, name="subscribe"),

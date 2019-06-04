@@ -11,13 +11,13 @@
 {% block content %}
     <div class="container mt-3">
         {% for company in companies %}
-        <div class="row post-content p-3 d-flex align-items-center">
+        <div class="row post-content d-flex align-items-center">
             <div class="col-4">
-                <div class="profile-item-image">
+                <div class="profile-item-image pr-4">
                     <img src="/media/{{ company.logo }}" alt="">
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 pl-2 border-left">
                 <div class="company-content">
                     <h6 class="post-title">{{ company.name }}</h6>
                     <p>{{ company.expect }}</p>
@@ -31,7 +31,7 @@
 
 {% block sidebar %}
     <div class="sidebar ml-2 mt-3">
-        <h6 class="title">Recent companies</h6>
+        <h6 class="title">Service Provider</h6>
         <ul>
             {% for company in companies|slice:"10:20" %}
                 <li>{{ company.name}}</li>
