@@ -2,5 +2,5 @@
 wecanchange/settings/local.py
 .DS_Store
 .idea/
-
+db.sqlite3
 *.pyc
