@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['stage-wecanchange.herokuapp.com']
 
@@ -136,8 +136,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
@@ -169,5 +167,4 @@ EMAIL_HOST_USER = 'webdivinecreativity@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-LOCATION = 'ftp://newness:Js5D3h6TLQJo@ftp.my-new-website.co.za:21'
-BASE_URL = 'media'
+
