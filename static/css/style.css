@@ -80,6 +80,9 @@ q:before, q:after {
 .border-right{
     border-top:1px solid #f1f1f1 !important
 }
+.container{
+    overflow:hidden;
+}
 blockquote{
     border-left: 4px solid;
     padding-left: 10px;
