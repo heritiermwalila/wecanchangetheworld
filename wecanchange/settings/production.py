@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'service_provider.apps.ServiceProviderConfig',
     'companies.apps.CompaniesConfig',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
 
 ]
 
@@ -142,6 +142,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 # ckeditor configuration
 
